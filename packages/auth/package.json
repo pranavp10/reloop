@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "@reloop/auth",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "packageManager": "pnpm@10.6.1",
+  "devDependencies": {
+    "@types/node": "~22.14.1",
+    "typescript": "~5.8.3"
+  },
+  "dependencies": {
+    "@reloop/db": "workspace:~",
+    "better-auth": "~1.2.7",
+    "zod": "~3.24.3"
+  }
+}

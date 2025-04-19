@@ -1,0 +1,15 @@
+{
+  "name": "@reloop/id",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "private": true,
+  "type": "module",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.1",
+  "dependencies": {
+    "ulidx": "~2.4.1"
+  },
+  "devDependencies": {
+    "@reloop/ts-config": "workspace:~"
+  }
+}

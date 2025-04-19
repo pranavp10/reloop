@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "reloop",
+  "private": true,
+  "scripts": {
+    "compose:up": "docker compose up -d",
+    "compose:status": "docker compose ps",
+    "compose:down": "docker compose down",
+    "db:generate": "turbo db:generate",
+    "db:migrate": "turbo db:migrate",
+    "db:studio": "turbo db:studio",
+    "clean": "turbo clean",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start"
+  },
+  "version": "1.0.0",
+  "author": "pranavp10",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.1",
+  "devDependencies": {
+    "@biomejs/biome": "~1.9.4",
+    "turbo": "~2.5.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "volta": {
+    "node": "22.13.1",
+    "pnpm": "10.2.0"
+  },
+  "dependencies": {
+    "@reloop/ts-config": "workspace:~"
+  },
+  "resolutions": {
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.0",
+    "next": "15.3.1",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  }
+}
