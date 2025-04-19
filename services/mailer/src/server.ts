@@ -5,7 +5,7 @@ import { join } from "node:path";
 
 import env from "./lib/env";
 
-config({ path: ".env.local", override: true });
+config({ path: ".env", override: true });
 
 export default async function startServer() {
   const fastify = Fastify({ logger: true });

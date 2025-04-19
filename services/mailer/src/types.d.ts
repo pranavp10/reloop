@@ -1,5 +1,5 @@
 import type { PostgresJsDatabase } from "@reloop/db/orm";
-import type * as schema from "@acme/db/schema";
+import type * as schema from "@reloop/db/";
 
 import type { AuthType } from "@reloop/auth";
 
