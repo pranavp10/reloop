@@ -1,7 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.8.0/schema.json",
   "organizeImports": {
-    "enabled": false
+    "enabled": true
   },
   "linter": {
     "enabled": true,
@@ -13,17 +13,22 @@
         "noUnusedVariables": "error",
         "useJsxKeyInIterable": "error"
       },
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
       "nursery": {
         "useSortedClasses": {
-          "level": "warn",
+          "level": "off",
           "options": {
-            "functions": ["cva"]
-          }
+            "attributes": ["classList"],
+            "functions": ["clsx", "cva", "tw"]
+          },
+          "fix": "unsafe"
         }
       },
       "style": {
         "recommended": true,
-        "useBlockStatements": "error"
+        "useBlockStatements": "off"
       }
     }
   },
