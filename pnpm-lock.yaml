@@ -220,6 +220,9 @@ importers:
       '@reloop/ts-config':
         specifier: workspace:~
         version: link:../../tools/ts-config
+      '@tailwindcss/postcss':
+        specifier: ~4.1.4
+        version: 4.1.4
       '@types/node':
         specifier: ~22.14.1
         version: 22.14.1
@@ -232,6 +235,9 @@ importers:
       react:
         specifier: 19.1.0
         version: 19.1.0
+      tailwindcss:
+        specifier: ~4.1.4
+        version: 4.1.4
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
