@@ -10,7 +10,7 @@ interface LogoProps {
 const Logo: React.FC<LogoProps> = ({ className, color, size, ...props }) => {
   return (
     <Mailbox
-      className={cn("h-8 w-8 text-[#FF6200]", className)}
+      className={cn("h-8 w-8 fill-[#FF6200]/20 text-[#FF6200]", className)}
       color={color}
       size={size}
       {...props}

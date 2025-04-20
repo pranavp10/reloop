@@ -31,7 +31,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
             className="flex justify-center items-center gap-2 w-fit mx-auto"
           >
             <Logo className="w-8 h-8" />
-            <p className="font-semibold text-2xl">Reloop</p>
+            <p className="font-semibold text-2xl">ReLoop</p>
           </Link>
           <div>
             <h1 className="text-lg text-center font-medium">
