@@ -29,7 +29,8 @@
       "style": {
         "recommended": true,
         "useBlockStatements": "off",
-        "useImportType": "off"
+        "useImportType": "off",
+        "noUnusedTemplateLiteral": "off"
       }
     }
   },
