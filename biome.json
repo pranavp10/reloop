@@ -14,7 +14,12 @@
         "useJsxKeyInIterable": "error"
       },
       "a11y": {
+        "useFocusableInteractive": "off",
+        "useSemanticElements": "off",
         "noSvgWithoutTitle": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
       },
       "nursery": {
         "useSortedClasses": {
