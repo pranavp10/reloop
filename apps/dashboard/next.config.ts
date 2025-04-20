@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         source: "/api/:path*",
         destination: `${env.NEXT_PUBLIC_API_URL}/api/:path*`,
       },
+      {
+        source: "/dashboard",
+        destination: env.NEXT_PUBLIC_WEB_URL,
+      },
     ];
   },
 };
