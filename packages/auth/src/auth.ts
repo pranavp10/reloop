@@ -19,6 +19,9 @@ export const config = {
     provider: "pg",
     usePlural: true,
   }),
+  emailAndPassword: {
+    enabled: true,
+  },
   socialProviders: {},
   plugins: [
     jwt(),
