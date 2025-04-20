@@ -34,6 +34,9 @@ importers:
       '@reloop/auth':
         specifier: workspace:~
         version: link:../../packages/auth
+      '@reloop/ui':
+        specifier: workspace:~
+        version: link:../../packages/ui
       axios:
         specifier: ~1.8.4
         version: 1.8.4
