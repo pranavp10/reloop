@@ -29,7 +29,8 @@ const formSchema = z
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
-const SignupForm = () => {
+
+export const SignupForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -190,5 +191,3 @@ const SignupForm = () => {
     </Form>
   );
 };
-
-export default SignupForm;
