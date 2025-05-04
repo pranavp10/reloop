@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import BAvatar from "boring-avatars";
 
 import cn from "../utils/cn";
 
@@ -48,4 +49,16 @@ function AvatarFallback({
   );
 }
 
-export { Avatar, AvatarImage, AvatarFallback };
+const BoringAvatar = ({ name, size = 10 }: { name: string; size: number }) => {
+  return (
+    <BAvatar
+      name={name}
+      size={size}
+      variant="pixel"
+      className="shrink-0"
+      colors={["#000", "#808080", "#CDCCC6"]}
+    />
+  );
+};
+
+export { Avatar, AvatarImage, AvatarFallback, BoringAvatar };

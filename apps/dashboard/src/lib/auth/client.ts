@@ -2,10 +2,31 @@
 
 import { createAuthClient } from "better-auth/react";
 
-import env from "@/lib/env/client";
+import {
+  organizationClient,
+  adminClient,
+  apiKeyClient,
+  inferAdditionalFields,
+} from "better-auth/client/plugins";
+import publicEnv from "@/lib/env/client";
+import auth from "@reloop/auth";
 
-const authClient = createAuthClient({
-  baseURL: env.NEXT_PUBLIC_WEB_URL,
+export const authClient = createAuthClient({
+  baseURL: publicEnv.NEXT_PUBLIC_WEB_URL,
+  plugins: [
+    organizationClient(),
+    adminClient(),
+    apiKeyClient(),
+    inferAdditionalFields<typeof auth>(),
+  ],
 });
 
-export const { getSession, signIn, signOut, signUp } = authClient;
+export const {
+  getSession,
+  signIn,
+  signOut,
+  signUp,
+  useSession,
+  organization,
+  updateUser,
+} = authClient;

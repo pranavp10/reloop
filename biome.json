@@ -16,7 +16,8 @@
       "a11y": {
         "useFocusableInteractive": "off",
         "useSemanticElements": "off",
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "noLabelWithoutControl": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"

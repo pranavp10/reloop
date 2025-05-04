@@ -1,8 +1,5 @@
 "use client";
 
-import * as React from "react";
-import { LucideIcon } from "lucide-react";
-
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -10,19 +7,23 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@reloop/ui/components/sidebar";
+import { HelpCircleIcon, SearchIcon } from "lucide-react";
 
-export function NavSecondary({
-  items,
-  ...props
-}: {
-  items: {
-    title: string;
-    url: string;
-    icon: LucideIcon;
-  }[];
-} & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+export function NavSecondary() {
+  const items = [
+    {
+      title: "Get Help",
+      url: "#",
+      icon: HelpCircleIcon,
+    },
+    {
+      title: "Search",
+      url: "#",
+      icon: SearchIcon,
+    },
+  ];
   return (
-    <SidebarGroup {...props}>
+    <SidebarGroup className="mt-auto">
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (

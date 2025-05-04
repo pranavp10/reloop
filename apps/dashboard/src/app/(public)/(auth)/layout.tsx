@@ -19,7 +19,7 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
   const user = await getCurrentUser();
 
   if (user) {
-    redirect("/dashboard");
+    redirect("/onboarding");
   }
 
   return (

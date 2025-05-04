@@ -13,16 +13,17 @@ import { Input } from "@reloop/ui/components/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@reloop/ui";
 import { useState } from "react";
-import { signUp } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { organization, signUp, updateUser } from "@/lib/auth/client";
+import { generateId } from "better-auth";
 
 const formSchema = z
   .object({
     email: z.string().min(2).max(50),
     password: z.string().min(8).max(50),
     firstName: z.string().min(2).max(50),
-    lastName: z.string().min(2).max(50),
+    lastName: z.string().min(1).max(50),
     confirmPassword: z.string().min(8).max(50),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -45,33 +46,48 @@ export const SignupForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    await signUp
-      .email({
+    try {
+      setLoading(true);
+      const name = `${data.firstName} ${data.lastName}`;
+      const auth = await signUp.email({
         email: data.email,
         password: data.password,
-        name: `${data.firstName} ${data.lastName}`,
-        callbackURL: `/dashboard`,
-        fetchOptions: {
-          onRequest: () => {
-            setLoading(true);
-          },
-          onResponse: () => {
-            setLoading(false);
-          },
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
-          },
-          onSuccess: async () => {
-            router.push("/dashboard");
-          },
-        },
-      })
-      .then(() => {
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
+        name,
+        callbackURL: `/onboarding`,
       });
+      if (auth.error) {
+        setLoading(false);
+        if (auth.error.code === "USER_ALREADY_EXISTS") {
+          form.setError("email", {
+            type: "manual",
+            message: "User already exists",
+          });
+        } else {
+          toast.error(auth.error.message);
+        }
+        return;
+      }
+      const org = await organization.create({
+        name,
+        slug: `${name.replace(/\s+/g, "-").toLowerCase()}-${generateId()}`,
+      });
+      await updateUser({
+        activeOrganization: org.data?.id,
+      });
+      if (org.error) {
+        setLoading(false);
+        toast.error(org.error.message);
+        return;
+      }
+      router.push("/onboarding/");
+    } catch (e) {
+      setLoading(false);
+      if (e instanceof Error && e.message) {
+        toast.error(e.message);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    }
   };
 
   return (

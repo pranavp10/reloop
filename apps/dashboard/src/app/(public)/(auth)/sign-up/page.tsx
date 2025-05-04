@@ -7,7 +7,7 @@ const Page = () => {
       <SignupForm />
       <div className="text-center text-sm pt-7 font-medium text-muted-foreground">
         Already have an account?{" "}
-        <Link href="/sign-in" className="text-primary">
+        <Link href="/sign-in" className="text-primary underline">
           Sign In
         </Link>
       </div>

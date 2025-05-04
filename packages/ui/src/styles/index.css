@@ -141,6 +141,16 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+::selection {
+  background-color: black;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: black;
+  color: white;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

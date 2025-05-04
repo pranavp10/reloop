@@ -1,19 +1,19 @@
-import { toNodeHandler } from 'better-auth/node'
-import type { FastifyPluginAsync } from 'fastify'
+import { toNodeHandler } from "better-auth/node";
+import type { FastifyPluginAsync } from "fastify";
 
 export default (async (fastify) => {
-  const authHandler = toNodeHandler(fastify.auth.handler)
+  const authHandler = toNodeHandler(fastify.auth.handler);
 
   fastify.addContentTypeParser(
-    'application/json',
+    "application/json",
     (_request, _payload, done) => {
-      done(null, null)
-    },
-  )
+      done(null, null);
+    }
+  );
 
   fastify.route({
-    method: ['POST', 'GET'],
-    url: '/auth/*',
+    method: ["POST", "GET"],
+    url: "/auth/*",
     handler: async (req, reply) => await authHandler(req.raw, reply.raw),
-  })
-}) satisfies FastifyPluginAsync
+  });
+}) satisfies FastifyPluginAsync;

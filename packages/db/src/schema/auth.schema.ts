@@ -20,6 +20,8 @@ export const users = pgTable("user", {
   banExpires: timestamp("ban_expires"),
   username: text("username").unique(),
   displayUsername: text("display_username"),
+  activeMode: text("active_mode"),
+  activeOrganization: text("active_organization"),
 });
 
 export const sessions = pgTable("session", {
@@ -55,7 +57,7 @@ export const accounts = pgTable("account", {
   updatedAt: timestamp("updated_at").notNull(),
 });
 
-export const verification = pgTable("verification", {
+export const verifications = pgTable("verification", {
   id: text("id").primaryKey(),
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
@@ -71,7 +73,7 @@ export const jwkss = pgTable("jwks", {
   createdAt: timestamp("created_at").notNull(),
 });
 
-export const organization = pgTable("organization", {
+export const organizations = pgTable("organization", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   slug: text("slug").unique(),
@@ -80,11 +82,11 @@ export const organization = pgTable("organization", {
   metadata: text("metadata"),
 });
 
-export const member = pgTable("member", {
+export const members = pgTable("member", {
   id: text("id").primaryKey(),
   organizationId: text("organization_id")
     .notNull()
-    .references(() => organization.id, { onDelete: "cascade" }),
+    .references(() => organizations.id, { onDelete: "cascade" }),
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
@@ -92,11 +94,11 @@ export const member = pgTable("member", {
   createdAt: timestamp("created_at").notNull(),
 });
 
-export const invitation = pgTable("invitation", {
+export const invitations = pgTable("invitation", {
   id: text("id").primaryKey(),
   organizationId: text("organization_id")
     .notNull()
-    .references(() => organization.id, { onDelete: "cascade" }),
+    .references(() => organizations.id, { onDelete: "cascade" }),
   email: text("email").notNull(),
   role: text("role"),
   status: text("status").notNull(),
@@ -106,7 +108,7 @@ export const invitation = pgTable("invitation", {
     .references(() => users.id, { onDelete: "cascade" }),
 });
 
-export const apikey = pgTable("apikey", {
+export const apikeys = pgTable("apikey", {
   id: text("id").primaryKey(),
   name: text("name"),
   start: text("start"),
@@ -115,6 +117,9 @@ export const apikey = pgTable("apikey", {
   userId: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
+  organizationId: text("organization_id")
+    .notNull()
+    .references(() => organizations.id, { onDelete: "cascade" }),
   refillInterval: integer("refill_interval"),
   refillAmount: integer("refill_amount"),
   lastRefillAt: timestamp("last_refill_at"),

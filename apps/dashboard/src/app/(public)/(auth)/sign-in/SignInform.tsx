@@ -13,11 +13,10 @@ import { Input } from "@reloop/ui/components/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@reloop/ui";
 import { useState } from "react";
-import { signIn } from "@/lib/auth/client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
-
+import { signIn } from "@/lib/auth/client";
 const formSchema = z.object({
   email: z.string().min(2).max(50),
   password: z.string().min(8).max(50),
@@ -47,10 +46,17 @@ export const SignInForm = () => {
             setLoading(false);
           },
           onError: (ctx) => {
-            toast.error(ctx.error.message);
+            if (ctx.error.code === "INVALID_EMAIL_OR_PASSWORD") {
+              form.setError("email", {
+                type: "manual",
+                message: "Invalid email or password",
+              });
+            } else {
+              toast.error(ctx.error.message);
+            }
           },
           onSuccess: async () => {
-            router.push("/dashboard");
+            router.push("/onboarding");
           },
         },
       })
