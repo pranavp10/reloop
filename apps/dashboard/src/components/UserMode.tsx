@@ -1,6 +1,6 @@
 "use client";
 
-import { useMode } from "@/hooks/useMode";
+import { usePush } from "@/hooks/usePush";
 import { RadioGroup, RadioGroupItem } from "@reloop/ui/components/radio-group";
 import { Terminal, Workflow } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,8 @@ import { useId } from "react";
 export default function UserMode() {
   const router = useRouter();
   const id = useId();
-  const { mode } = useMode();
+  const { mode } = usePush();
+
   return (
     <div className="bg-input/50 inline-flex h-9 rounded-full p-0.5 ">
       <RadioGroup

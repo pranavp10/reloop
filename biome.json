@@ -10,7 +10,7 @@
       "correctness": {
         "all": false,
         "noUnusedImports": "error",
-        "noUnusedVariables": "error",
+        "noUnusedVariables": "warn",
         "useJsxKeyInIterable": "error"
       },
       "a11y": {

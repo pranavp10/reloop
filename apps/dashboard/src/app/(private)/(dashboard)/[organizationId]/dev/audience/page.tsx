@@ -1,7 +1,9 @@
+"use client";
+
 const Page = () => {
   return (
     <div>
-      <p>dsff</p>
+      <p>Audience</p>
     </div>
   );
 };

@@ -79,7 +79,7 @@ export const SignupForm = () => {
         toast.error(org.error.message);
         return;
       }
-      router.push("/onboarding/");
+      router.push("/onboarding");
     } catch (e) {
       setLoading(false);
       if (e instanceof Error && e.message) {

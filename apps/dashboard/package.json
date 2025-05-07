@@ -11,10 +11,12 @@
   "dependencies": {
     "@better-fetch/fetch": "~1.1.18",
     "@hookform/resolvers": "~5.0.1",
+    "@lexical/react": "~0.31.0",
     "@reloop/auth": "workspace:~",
     "@reloop/ui": "workspace:~",
     "axios": "~1.8.4",
     "better-auth": "~1.2.7",
+    "lexical": "~0.31.0",
     "lucide-react": "~0.501.0",
     "motion": "~12.7.4",
     "next": "15.3.1",

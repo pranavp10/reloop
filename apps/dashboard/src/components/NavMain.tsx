@@ -20,16 +20,15 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@reloop/ui/components/sidebar";
-import { useMode } from "@/hooks/useMode";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@reloop/ui/components/collapsible";
-import Link from "next/link";
+import { usePush } from "@/hooks/usePush";
 
 export function NavMain() {
-  const { isDev, mode } = useMode();
+  const { push, isDev } = usePush();
   const items = isDev ? devItems : marketingItems;
   return (
     <SidebarGroup>
@@ -40,11 +39,15 @@ export function NavMain() {
         {items.map((item) => (
           <Collapsible key={item.title} asChild defaultOpen={item?.isActive}>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip={item.title}>
-                <Link href={`/${mode}/${item.url}`}>
+              <SidebarMenuButton
+                asChild
+                tooltip={item.title}
+                onClick={() => push(`/${item.url}`)}
+              >
+                <div>
                   <item.icon />
                   <span>{item.title}</span>
-                </Link>
+                </div>
               </SidebarMenuButton>
               {item.items?.length ? (
                 <>
@@ -77,6 +80,25 @@ export function NavMain() {
   );
 }
 
+const general = [
+  {
+    title: "General",
+    url: "/general",
+  },
+  {
+    title: "Team",
+    url: "/team",
+  },
+  {
+    title: "Billing",
+    url: "/billing",
+  },
+  {
+    title: "Limits",
+    url: "/limits",
+  },
+];
+
 const devItems = [
   {
     title: "Home",
@@ -100,27 +122,10 @@ const devItems = [
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/settings",
     icon: Settings,
     isActive: true,
-    items: [
-      {
-        title: "General",
-        url: "#",
-      },
-      {
-        title: "Team",
-        url: "#",
-      },
-      {
-        title: "Billing",
-        url: "#",
-      },
-      {
-        title: "Limits",
-        url: "#",
-      },
-    ],
+    items: general,
   },
 ];
 
@@ -132,26 +137,9 @@ const marketingItems = [
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/setting",
     icon: Settings,
     isActive: true,
-    items: [
-      {
-        title: "General",
-        url: "#",
-      },
-      {
-        title: "Team",
-        url: "#",
-      },
-      {
-        title: "Billing",
-        url: "#",
-      },
-      {
-        title: "Limits",
-        url: "#",
-      },
-    ],
+    items: general,
   },
 ];

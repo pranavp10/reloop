@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
 import { signIn } from "@/lib/auth/client";
+import { User } from "@reloop/auth";
 const formSchema = z.object({
   email: z.string().min(2).max(50),
   password: z.string().min(8).max(50),
@@ -34,38 +35,24 @@ export const SignInForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    await signIn
-      .email({
-        email: data.email,
-        password: data.password,
-        fetchOptions: {
-          onRequest: () => {
-            setLoading(true);
-          },
-          onResponse: () => {
-            setLoading(false);
-          },
-          onError: (ctx) => {
-            if (ctx.error.code === "INVALID_EMAIL_OR_PASSWORD") {
-              form.setError("email", {
-                type: "manual",
-                message: "Invalid email or password",
-              });
-            } else {
-              toast.error(ctx.error.message);
-            }
-          },
-          onSuccess: async () => {
-            router.push("/onboarding");
-          },
-        },
-      })
-      .then(() => {
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+    const auth = await signIn.email({
+      email: data.email,
+      password: data.password,
+    });
+    if (auth.error) {
+      setLoading(false);
+      if (auth.error.code === "INVALID_EMAIL_OR_PASSWORD") {
+        form.setError("email", {
+          type: "manual",
+          message: "Invalid email or password",
+        });
+      } else {
+        toast.error(auth.error.message);
+      }
+      return;
+    }
+    const user = auth.data.user as User;
+    router.push(`/${user.activeOrganization}/${user.activeMode}`);
   };
 
   return (

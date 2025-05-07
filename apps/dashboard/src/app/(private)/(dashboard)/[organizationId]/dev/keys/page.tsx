@@ -1,7 +1,9 @@
+"use client";
+
 const Page = () => {
   return (
     <div>
-      <p>dsfads</p>
+      <p>Api key</p>
     </div>
   );
 };

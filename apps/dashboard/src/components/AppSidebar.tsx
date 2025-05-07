@@ -17,11 +17,13 @@ import Link from "next/link";
 import { Logo } from "@reloop/ui/components/logo";
 import UserMode from "./UserMode";
 import { Badge } from "@reloop/ui/components/badge";
-import { useMode } from "@/hooks/useMode";
+
 import cn from "@reloop/ui/utils/cn";
+import { usePush } from "@/hooks/usePush";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { isMarketing, mode } = useMode();
+  const { isMarketing, mode } = usePush();
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
