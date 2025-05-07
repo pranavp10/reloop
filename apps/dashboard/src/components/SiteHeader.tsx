@@ -2,7 +2,7 @@ import { Separator } from "@reloop/ui/components/separator";
 import { SidebarTrigger } from "@reloop/ui/components/sidebar";
 import { Organization } from "./Organization/Index";
 import { NavUser } from "./NavUser";
-import { Button } from "@reloop/ui";
+import UserMode from "./UserMode";
 
 export function SiteHeader() {
   return (
@@ -17,13 +17,7 @@ export function SiteHeader() {
           <Organization />
         </div>
         <div className="flex gap-2 items-center">
-          <Button
-            size="sm"
-            variant="link"
-            className="text-muted-foreground font-normal p-0"
-          >
-            Docs
-          </Button>
+          <UserMode />
           <NavUser />
         </div>
       </div>

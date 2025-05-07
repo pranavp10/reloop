@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useSession } from "@/lib/auth/client";
+import { updateUser, useSession } from "@/lib/auth/client";
 import { useCallback, useMemo } from "react";
 
 export const usePush = () => {
@@ -46,6 +46,7 @@ export const usePush = () => {
   const changeMode = useCallback(
     (targetMode: Mode) => {
       if (activeOrganization) {
+        updateUser({ activeMode: targetMode });
         nextPush(`/${activeOrganization}/${targetMode}`);
       }
     },

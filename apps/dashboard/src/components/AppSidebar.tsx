@@ -1,25 +1,23 @@
 "use client";
 
 import * as React from "react";
-import { Terminal, Workflow } from "lucide-react";
 
 import { NavMain } from "@/components/NavMain";
 import { NavSecondary } from "@/components/NavSecondary";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
 } from "@reloop/ui/components/sidebar";
 import Link from "next/link";
 import { Logo } from "@reloop/ui/components/logo";
-import UserMode from "./UserMode";
 import { Badge } from "@reloop/ui/components/badge";
 
 import cn from "@reloop/ui/utils/cn";
 import { usePush } from "@/hooks/usePush";
+import { Icon } from "@reloop/ui";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { isMarketing, mode } = usePush();
@@ -44,9 +42,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 )}
               >
                 {isMarketing ? (
-                  <Workflow className="w-3 h-3" />
+                  <Icon name="mega-phone" className="w-3 h-3" />
                 ) : (
-                  <Terminal className="w-3 h-3" />
+                  <Icon name="coding" className="w-3 h-3 " />
                 )}
                 {mode}
               </Badge>
@@ -58,9 +56,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain />
         <NavSecondary />
       </SidebarContent>
-      <SidebarFooter>
-        <UserMode />
-      </SidebarFooter>
     </Sidebar>
   );
 }

@@ -26,7 +26,7 @@ export function NavUser({ size = 24 }: { size?: number }) {
 
   const user = data.user;
   return (
-    <SidebarMenu className="shrink-0">
+    <SidebarMenu className="shrink-0 w-fit">
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

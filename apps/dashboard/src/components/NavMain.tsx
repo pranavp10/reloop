@@ -79,7 +79,7 @@ const devItems = [
   {
     title: "Webhooks",
     url: "/webhooks",
-    icon: "route",
+    icon: "modules",
   },
   {
     title: "Settings",
@@ -92,11 +92,31 @@ const marketingItems = [
   {
     title: "Home",
     url: "/",
-    icon: "home",
+    icon: "box",
+  },
+  {
+    title: "Templates",
+    url: "/templates",
+    icon: "grid",
+  },
+  {
+    title: "Campaigns",
+    url: "/campaigns",
+    icon: "mega-phone",
+  },
+  {
+    title: "Automation",
+    url: "/automation",
+    icon: "route",
+  },
+  {
+    title: "Audience",
+    url: "/audience",
+    icon: "users",
   },
   {
     title: "Settings",
-    url: "/setting",
-    icon: "home",
+    url: "/settings",
+    icon: "gear",
   },
 ];
