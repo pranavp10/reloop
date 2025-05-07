@@ -3,7 +3,7 @@
 const Page = () => {
   return (
     <div>
-      <p>Api key</p>
+      <h1 className="text-2xl">Api key</h1>
     </div>
   );
 };

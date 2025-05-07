@@ -20,13 +20,13 @@ import {
 import { SidebarMenu, SidebarMenuItem } from "@reloop/ui/components/sidebar";
 import { useSession } from "@/lib/auth/client";
 
-export function NavUser({ size = 0 }: { size?: number }) {
+export function NavUser({ size = 24 }: { size?: number }) {
   const { data } = useSession();
   if (!data?.user) return null;
 
   const user = data.user;
   return (
-    <SidebarMenu>
+    <SidebarMenu className="shrink-0">
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -35,7 +35,7 @@ export function NavUser({ size = 0 }: { size?: number }) {
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg "
             side="bottom"
             align="end"
             sideOffset={4}

@@ -1,131 +1,90 @@
 "use client";
 
 import {
-  ChevronRight,
-  Home,
-  KeyRound,
-  Settings,
-  UsersRound,
-  Webhook,
-} from "lucide-react";
-
-import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from "@reloop/ui/components/sidebar";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@reloop/ui/components/collapsible";
+import { Collapsible } from "@reloop/ui/components/collapsible";
 import { usePush } from "@/hooks/usePush";
+import { Icon } from "@reloop/ui";
+import cn from "@reloop/ui/utils/cn";
 
 export function NavMain() {
-  const { push, isDev } = usePush();
+  const { push, isDev, matchRoute } = usePush();
   const items = isDev ? devItems : marketingItems;
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>
-        {isDev ? "Developer Platform" : "Marketing Platform"}
+        {isDev ? "Developers" : "Marketing"}
       </SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible key={item.title} asChild defaultOpen={item?.isActive}>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                asChild
-                tooltip={item.title}
-                onClick={() => push(`/${item.url}`)}
-              >
-                <div>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </div>
-              </SidebarMenuButton>
-              {item.items?.length ? (
-                <>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuAction className="data-[state=open]:rotate-90">
-                      <ChevronRight />
-                      <span className="sr-only">Toggle</span>
-                    </SidebarMenuAction>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      {item.items?.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
-                            <a href={subItem.url}>
-                              <span>{subItem.title}</span>
-                            </a>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </>
-              ) : null}
-            </SidebarMenuItem>
-          </Collapsible>
-        ))}
+        {items.map((item) => {
+          const isActive = matchRoute(item.url);
+          return (
+            <Collapsible key={item.title} asChild className="relative">
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  tooltip={item.title}
+                  onClick={() => push(`${item.url}`)}
+                  className={cn(
+                    "cursor-pointer hover:bg-sidebar-accent",
+                    isActive
+                      ? "bg-sidebar-accent  text-black"
+                      : "text-black/75",
+                  )}
+                >
+                  <div>
+                    {isActive && (
+                      <div className="h-[60%] w-[2.5px] bg-black absolute my-1 left-[1px] rounded-full" />
+                    )}
+                    <Icon
+                      name={item.icon}
+                      className={cn(
+                        isActive ? "text-primary" : "text-muted-foreground",
+                      )}
+                    />
+                    <span>{item.title}</span>
+                  </div>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </Collapsible>
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   );
 }
 
-const general = [
-  {
-    title: "General",
-    url: "/general",
-  },
-  {
-    title: "Team",
-    url: "/team",
-  },
-  {
-    title: "Billing",
-    url: "/billing",
-  },
-  {
-    title: "Limits",
-    url: "/limits",
-  },
-];
-
 const devItems = [
   {
     title: "Home",
     url: "/",
-    icon: Home,
+    icon: "box",
   },
   {
     title: "Audience",
     url: "/audience",
-    icon: UsersRound,
+    icon: "users",
   },
   {
     title: "API Keys",
     url: "/keys",
-    icon: KeyRound,
+    icon: "coding",
   },
   {
     title: "Webhooks",
     url: "/webhooks",
-    icon: Webhook,
+    icon: "route",
   },
   {
     title: "Settings",
     url: "/settings",
-    icon: Settings,
-    isActive: true,
-    items: general,
+    icon: "gear",
   },
 ];
 
@@ -133,13 +92,11 @@ const marketingItems = [
   {
     title: "Home",
     url: "/",
-    icon: Home,
+    icon: "home",
   },
   {
     title: "Settings",
     url: "/setting",
-    icon: Settings,
-    isActive: true,
-    items: general,
+    icon: "home",
   },
 ];

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@reloop/ui/components/sonner";
-import { ThemeProvider } from "@reloop/ui";
+import { IconsSprite, ThemeProvider } from "@reloop/ui";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export default function RootLayout({
           <ThemeProvider>
             {children}
             <Toaster />
+            <IconsSprite />
           </ThemeProvider>
         </NuqsAdapter>
       </body>

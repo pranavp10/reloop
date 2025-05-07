@@ -54,11 +54,18 @@ export const usePush = () => {
 
   const matchRoute = useCallback(
     (routePath: string) => {
-      const currentPathSegments = pathname.split("/").slice(0, 3).join("/");
-      return currentPathSegments.includes(routePath);
+      const normalizedRoutePath = routePath.startsWith("/")
+        ? routePath.substring(1)
+        : routePath;
+      const currentPathSegments = pathname.split("/");
+      const routeSegments = currentPathSegments.slice(3);
+
+      return (
+        routeSegments.some((segment) => segment === normalizedRoutePath) ||
+        (routePath === "/" && !routeSegments.length)
+      );
     },
     [pathname],
   );
-
   return { push, matchRoute, changeMode, mode, isDev, isMarketing };
 };
