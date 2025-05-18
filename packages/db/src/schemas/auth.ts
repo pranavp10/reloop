@@ -24,7 +24,7 @@ export const users = pgTable('users', {
   banned: boolean('banned'),
   banReason: text('ban_reason'),
   banExpires: timestamp('ban_expires'),
-  activeMode: text('active_mode').default('dev'),
+  activeMode: text('active_mode'),
   activeOrganization: text('active_organization'),
 });
 

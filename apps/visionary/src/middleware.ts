@@ -17,12 +17,13 @@ export default async function authMiddleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/sign-in', request.url));
     }
     if (data.user.activeOrganization && data.user.activeMode) {
-      return NextResponse.redirect(
-        new URL(
-          `/${data.user.activeOrganization}/${data.user.activeMode}`,
-          request.url,
-        ),
-      );
+      // return NextResponse.redirect(
+      //   new URL(
+      //     `/${data.user.activeOrganization}/${data.user.activeMode}`,
+      //     request.url,
+      //   ),
+      // );
+      return NextResponse.next();
     }
   } catch (e) {
     return NextResponse.next();
@@ -30,5 +31,5 @@ export default async function authMiddleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dev/:path*', '/marketing/:path*', '/onboarding/:path*', '/'],
+  matcher: ['/'],
 };

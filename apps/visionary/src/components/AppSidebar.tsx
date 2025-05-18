@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 import { NavMain } from '@/components/NavMain';
 import { NavSecondary } from '@/components/NavSecondary';
@@ -37,18 +38,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 )}
               </Link>
               {state === 'expanded' && (
-                <Badge
-                  className={cn(
-                    'rounded-full capitalize text-xs h-6',
-                    isMarketing ? 'bg-blue-500' : '',
-                  )}
+                <motion.div
+                  key={mode}
+                  initial={{ x: isMarketing ? -20 : 20, opacity: 0.3 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: isMarketing ? -20 : 20, opacity: 0 }}
+                  transition={{ duration: 0.18, ease: 'easeInOut' }}
                 >
-                  <Icon
-                    name={isMarketing ? 'mega-phone' : 'coding'}
-                    className="w-3 h-3"
-                  />
-                  {mode}
-                </Badge>
+                  <Badge
+                    className={cn(
+                      'rounded-full capitalize text-xs h-6 inline-flex items-center gap-1',
+                      isMarketing ? 'bg-indigo-500' : '',
+                    )}
+                  >
+                    <Icon
+                      name={isMarketing ? 'mega-phone' : 'coding'}
+                      className="w-3 h-3"
+                    />
+                    {mode}
+                  </Badge>
+                </motion.div>
               )}
             </div>
           </SidebarMenuItem>
