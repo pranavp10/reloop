@@ -11,7 +11,7 @@ export interface AuthOptions {
   isCli?: boolean;
 }
 
-export const createAuth = ({ webUrl, authSecret, isCli }: AuthOptions) => {
+export const createAuth = ({ authSecret, isCli }: AuthOptions) => {
   return betterAuth({
     ...config,
     database: isCli

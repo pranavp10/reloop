@@ -6,40 +6,29 @@ import {
   integer,
 } from 'drizzle-orm/pg-core';
 
-export const users = pgTable('user', {
+export const users = pgTable('users', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
-  emailVerified: boolean('email_verified').notNull(),
+  emailVerified: boolean('email_verified')
+    .$defaultFn(() => false)
+    .notNull(),
   image: text('image'),
-  createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull(),
+  createdAt: timestamp('created_at')
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp('updated_at')
+    .$defaultFn(() => new Date())
+    .notNull(),
   role: text('role'),
   banned: boolean('banned'),
   banReason: text('ban_reason'),
   banExpires: timestamp('ban_expires'),
-  username: text('username').unique(),
-  displayUsername: text('display_username'),
-  activeMode: text('active_mode'),
+  activeMode: text('active_mode').default('dev'),
   activeOrganization: text('active_organization'),
 });
 
-export const sessions = pgTable('session', {
-  id: text('id').primaryKey(),
-  expiresAt: timestamp('expires_at').notNull(),
-  token: text('token').notNull().unique(),
-  createdAt: timestamp('created_at').notNull(),
-  updatedAt: timestamp('updated_at').notNull(),
-  ipAddress: text('ip_address'),
-  userAgent: text('user_agent'),
-  userId: text('user_id')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
-  activeOrganizationId: text('active_organization_id'),
-  impersonatedBy: text('impersonated_by'),
-});
-
-export const accounts = pgTable('account', {
+export const accounts = pgTable('accounts', {
   id: text('id').primaryKey(),
   accountId: text('account_id').notNull(),
   providerId: text('provider_id').notNull(),
@@ -57,23 +46,23 @@ export const accounts = pgTable('account', {
   updatedAt: timestamp('updated_at').notNull(),
 });
 
-export const verifications = pgTable('verification', {
+export const verifications = pgTable('verifications', {
   id: text('id').primaryKey(),
   identifier: text('identifier').notNull(),
   value: text('value').notNull(),
   expiresAt: timestamp('expires_at').notNull(),
-  createdAt: timestamp('created_at'),
-  updatedAt: timestamp('updated_at'),
+  createdAt: timestamp('created_at').$defaultFn(() => new Date()),
+  updatedAt: timestamp('updated_at').$defaultFn(() => new Date()),
 });
 
-export const jwkss = pgTable('jwks', {
+export const jwkss = pgTable('jwkss', {
   id: text('id').primaryKey(),
   publicKey: text('public_key').notNull(),
   privateKey: text('private_key').notNull(),
   createdAt: timestamp('created_at').notNull(),
 });
 
-export const organizations = pgTable('organization', {
+export const organizations = pgTable('organizations', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
   slug: text('slug').unique(),
@@ -82,7 +71,7 @@ export const organizations = pgTable('organization', {
   metadata: text('metadata'),
 });
 
-export const members = pgTable('member', {
+export const members = pgTable('members', {
   id: text('id').primaryKey(),
   organizationId: text('organization_id')
     .notNull()
@@ -90,25 +79,25 @@ export const members = pgTable('member', {
   userId: text('user_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  role: text('role').notNull(),
+  role: text('role').default('member').notNull(),
   createdAt: timestamp('created_at').notNull(),
 });
 
-export const invitations = pgTable('invitation', {
+export const invitations = pgTable('invitations', {
   id: text('id').primaryKey(),
   organizationId: text('organization_id')
     .notNull()
     .references(() => organizations.id, { onDelete: 'cascade' }),
   email: text('email').notNull(),
   role: text('role'),
-  status: text('status').notNull(),
+  status: text('status').default('pending').notNull(),
   expiresAt: timestamp('expires_at').notNull(),
   inviterId: text('inviter_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
 });
 
-export const apikeys = pgTable('apikey', {
+export const apikeys = pgTable('apikeys', {
   id: text('id').primaryKey(),
   name: text('name'),
   start: text('start'),
@@ -117,16 +106,13 @@ export const apikeys = pgTable('apikey', {
   userId: text('user_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  organizationId: text('organization_id')
-    .notNull()
-    .references(() => organizations.id, { onDelete: 'cascade' }),
   refillInterval: integer('refill_interval'),
   refillAmount: integer('refill_amount'),
   lastRefillAt: timestamp('last_refill_at'),
-  enabled: boolean('enabled'),
-  rateLimitEnabled: boolean('rate_limit_enabled'),
-  rateLimitTimeWindow: integer('rate_limit_time_window'),
-  rateLimitMax: integer('rate_limit_max'),
+  enabled: boolean('enabled').default(true),
+  rateLimitEnabled: boolean('rate_limit_enabled').default(true),
+  rateLimitTimeWindow: integer('rate_limit_time_window').default(86400000),
+  rateLimitMax: integer('rate_limit_max').default(10),
   requestCount: integer('request_count'),
   remaining: integer('remaining'),
   lastRequest: timestamp('last_request'),

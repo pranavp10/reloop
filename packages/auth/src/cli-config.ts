@@ -1,4 +1,3 @@
-import { betterAuth } from 'better-auth';
 import { createAuth } from './server';
 
 /**
@@ -12,6 +11,4 @@ import { createAuth } from './server';
  * The documentation for better-auth CLI can be found here:
  * - https://www.better-auth.com/docs/concepts/cli
  */
-export const auth = betterAuth({
-  ...createAuth({ isCli: true }),
-});
+export const auth = createAuth({ isCli: true });
