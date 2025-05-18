@@ -1,0 +1,9 @@
+{
+  "name": "@reloop/typescript-config",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "files": [
+    "*.json"
+  ]
+}

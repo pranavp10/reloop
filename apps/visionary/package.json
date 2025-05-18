@@ -1,0 +1,36 @@
+{
+  "name": "visionary",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "catalog:",
+    "@lexical/react": "catalog:",
+    "@reloop/auth": "workspace:~",
+    "@reloop/ui": "workspace:~",
+    "axios": "catalog:",
+    "better-auth": "catalog:",
+    "lexical": "catalog:",
+    "motion": "catalog:",
+    "next": "~15.3.2",
+    "nuqs": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "catalog:",
+    "sonner": "catalog:",
+    "valibot": "catalog:"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
+  }
+}

@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: docker.io/library/postgres:16.2-alpine
+    volumes:
+      - type: volume
+        source: postgresql-data
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_DB:
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+    ports:
+      - target: 5432
+        published: ${POSTGRES_PORT}
+        protocol: tcp
+    command: ["postgres", "-c", "log_statement=all"]
+    healthcheck:
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "postgres"]
+    restart: unless-stopped
+
+  redis:
+    image: docker.io/library/redis:7-alpine
+    volumes:
+      - type: volume
+        source: redis-data
+        target: /data
+    ports:
+      - target: 6379
+        published: ${REDIS_PORT}
+        protocol: tcp
+    restart: unless-stopped
+
+volumes:
+  postgresql-data:
+    driver: local
+  redis-data:
+    driver: local

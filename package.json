@@ -1,0 +1,38 @@
+{
+  "name": "reloop",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "compose:up": "docker compose -f /docker/docker-compose.yaml up -d",
+    "compose:status": "docker compose ps",
+    "compose:down": "docker compose down",
+    "auth:schema:generate": "turbo run auth:schema:generate",
+    "db:generate": "turbo -F @reloop/db generate",
+    "db:push": "turbo -F @reloop/db push",
+    "db:studio": "turbo -F @reloop/db studio",
+    "start": "turbo run start",
+    "dev": "turbo watch dev --continue",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "format": "turbo run format --continue -- --cache --cache-location .cache/.prettiercache",
+    "format:fix": "pnpm format --write",
+    "lint": "turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
+    "lint:fix": "pnpm lint --fix",
+    "postclean": "git clean -xdf .cache .turbo node_modules",
+    "typecheck": "turbo run typecheck",
+    "ui-add": "turbo run ui-add -F @reloop/ui --"
+  },
+  "author": "pranavp10",
+  "engines": {
+    "node": ">=22.10.0"
+  },
+  "prettier": "@reloop/prettier-config",
+  "keywords": [],
+  "packageManager": "pnpm@10.6.1",
+  "devDependencies": {
+    "@reloop/prettier-config": "workspace:*",
+    "prettier": "catalog:",
+    "turbo": "catalog:"
+  }
+}
