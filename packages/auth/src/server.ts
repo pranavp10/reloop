@@ -34,7 +34,6 @@ export const createAuth = ({ webUrl, authSecret, isCli }: AuthOptions) => {
       },
     },
     secret: authSecret || config.secret,
-    trustedOrigins: webUrl ? [webUrl] : config.trustedOrigins,
     plugins: [
       ...(config.plugins ?? []),
       customSession(async ({ user, session }) => {

@@ -1,6 +1,6 @@
 'use client';
 import { updateUser, useSession } from '@/lib/auth/client';
-import { Button } from '@reloop/ui/components/Button';
+import { Button } from '@reloop/ui/components/button';
 import { Icon } from '@reloop/ui/components/icon';
 import { cn } from '@reloop/ui/lib/utils';
 import { useRouter } from 'next/navigation';

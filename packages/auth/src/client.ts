@@ -1,13 +1,40 @@
+import { betterAuth } from 'better-auth';
 import {
   organizationClient,
   adminClient,
   apiKeyClient,
   inferAdditionalFields,
 } from 'better-auth/client/plugins';
+import { customSession } from 'better-auth/plugins';
 import { createAuthClient as createBetterAuthClient } from 'better-auth/react';
-import { createAuth } from './server';
+import { config } from './config';
 
-const auth = createAuth({});
+const auth = betterAuth({
+  ...config,
+  secret: config.secret,
+  trustedOrigins: config.trustedOrigins,
+  plugins: [
+    ...(config.plugins ?? []),
+    customSession(async ({ user, session }) => {
+      try {
+        return {
+          user: { ...user },
+          session,
+        };
+      } catch (e) {
+        if (e instanceof Error) {
+          console.log(e.message);
+        } else {
+          console.log('An unknown error occurred');
+        }
+        return {
+          user: { ...user },
+          session,
+        };
+      }
+    }, config),
+  ],
+});
 
 export type AuthInstance = typeof auth;
 export type Session = typeof auth.$Infer.Session.session;

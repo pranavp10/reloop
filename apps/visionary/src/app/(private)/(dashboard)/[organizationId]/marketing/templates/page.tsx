@@ -1,5 +1,5 @@
-export const Page = () => {
-  return <div>Templates</div>;
+const Page = () => {
+  return <div>Hello</div>;
 };
 
 export default Page;

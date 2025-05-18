@@ -1,10 +1,10 @@
-import Fastify from 'fastify';
-import autoLoad from '@fastify/autoload';
 import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import autoLoad from '@fastify/autoload';
 import fastifyCors from '@fastify/cors';
+import Fastify from 'fastify';
 
 import { env } from './utils/env';
-import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -28,7 +28,7 @@ export default async function server() {
   fastify.register(autoLoad, {
     dir: join(__dirname, 'routes'),
     options: {
-      prefix: '/api/v1/shield',
+      prefix: '/api/shield',
     },
   });
 

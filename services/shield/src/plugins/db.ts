@@ -1,6 +1,5 @@
-import fp from 'fastify-plugin';
-
 import { pg } from '@reloop/db/pg';
+import fp from 'fastify-plugin';
 
 export default fp(
   async function fastifyDb(fastify) {

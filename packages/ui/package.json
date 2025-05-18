@@ -18,6 +18,10 @@
     "./components/*": {
       "types": "./dist/src/components/*.d.ts",
       "default": "./src/components/*.tsx"
+    },
+    "./hooks/*": {
+      "types": "./dist/src/hooks/*.d.ts",
+      "default": "./src/hooks/*.ts"
     }
   },
   "scripts": {
@@ -66,6 +70,7 @@
     "date-fns": "catalog:",
     "embla-carousel-react": "catalog:",
     "input-otp": "catalog:",
+    "motion": "catalog:",
     "next-themes": "catalog:",
     "radix-ui": "catalog:",
     "react-day-picker": "catalog:",
@@ -74,8 +79,7 @@
     "recharts": "catalog:",
     "sonner": "catalog:",
     "tailwind-merge": "catalog:",
-    "vaul": "catalog:",
-    "zod": "catalog:"
+    "vaul": "catalog:"
   },
   "devDependencies": {
     "@reloop/eslint-config": "workspace:*",

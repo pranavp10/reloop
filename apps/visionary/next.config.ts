@@ -1,17 +1,14 @@
-import type { NextConfig } from "next";
-
-import env from "@/lib/env/client";
-
+import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
-        destination: `${env.NEXT_PUBLIC_API_URL}/api/:path*`,
+        source: '/api/shield/:path*',
+        destination: `${process.env.NEXT_PUBLIC_SHIELD_API_URL}/:path*`,
       },
     ];
   },
-  transpilePackages: ["@reloop/ui"],
+  transpilePackages: ['@reloop/ui'],
 };
 
 export default nextConfig;

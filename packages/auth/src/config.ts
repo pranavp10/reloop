@@ -10,7 +10,7 @@ import {
 } from 'better-auth/plugins';
 
 export const config = {
-  basePath: '/',
+  basePath: '/api/shield/v1/',
   user: {
     additionalFields: {
       activeMode: {
@@ -59,7 +59,7 @@ export const config = {
     expiresIn: 60 * 60 * 24 * 7,
     updateAge: 60 * 60 * 24,
   },
-  trustedOrigins: [],
+  trustedOrigins: ['*'],
   advanced: {
     cookiePrefix: 'reloop',
     ipAddress: {

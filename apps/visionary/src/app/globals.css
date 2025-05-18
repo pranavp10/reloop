@@ -1,61 +1,59 @@
-@import url("@reloop/ui/styles.css");
+@import '@reloop/tailwind-config/style.css';
 
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-bold-webfont.woff2") format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-bold-webfont.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-bolditalic-webfont") format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-bolditalic-webfont') format('woff2');
   font-weight: 700;
   font-style: italic;
 }
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-medium-webfont.woff2")
-    format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-medium-webfont.woff2')
+    format('woff2');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-mediumitalic-webfont.woff2")
-    format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-mediumitalic-webfont.woff2')
+    format('woff2');
   font-weight: 500;
   font-style: italic;
 }
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-regular-webfont.woff2")
-    format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-regular-webfont.woff2')
+    format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-regularitalic-webfont.woff2")
-    format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-regularitalic-webfont.woff2')
+    format('woff2');
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-semibold-webfont.woff2")
-    format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-semibold-webfont.woff2')
+    format('woff2');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: "BasierCircle";
-  src: url("/font/BasierCircle/basiercircle-semibolditalic-webfont.woff2")
-    format("woff2");
+  font-family: 'BasierCircle';
+  src: url('/font/BasierCircle/basiercircle-semibolditalic-webfont.woff2')
+    format('woff2');
   font-weight: 600;
   font-style: italic;
 }
 
-@theme {
-  --font-display: "BasierCircle", sans-serif;
-}
+@source '../../../../packages/ui';

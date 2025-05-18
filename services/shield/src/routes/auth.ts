@@ -3,7 +3,7 @@ import type { FastifyPluginAsync } from 'fastify';
 export default (async (fastify) => {
   fastify.route({
     method: ['GET', 'POST'],
-    url: '/*',
+    url: '/v1/*',
     async handler(request, reply) {
       try {
         const url = new URL(request.url, `http://${request.headers.host}`);

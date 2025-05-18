@@ -1,6 +1,6 @@
-"use client";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
+'use client';
+
+import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
@@ -8,51 +8,68 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@reloop/ui/components/form";
-import { Input } from "@reloop/ui/components/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@reloop/ui";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import Link from "next/link";
-import { signIn } from "@/lib/auth/client";
-import { User } from "@reloop/auth";
-const formSchema = z.object({
-  email: z.string().min(2).max(50),
-  password: z.string().min(8).max(50),
+} from '@reloop/ui/components/form';
+import { Input } from '@reloop/ui/components/input';
+import { valibotResolver } from '@hookform/resolvers/valibot';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import Link from 'next/link';
+import { signIn } from '@/lib/auth/client';
+import { User } from '@reloop/auth/client';
+import { object, string, minLength, pipe, email, InferInput } from 'valibot';
+import { Button } from '@reloop/ui/components/button';
+import { useStatus } from '@/hooks/useStatus';
+
+const formSchema = object({
+  email: pipe(string(), email()),
+  password: pipe(string(), minLength(8)),
 });
+
+type FormSchema = InferInput<typeof formSchema>;
 
 export const SignInForm = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { setError, setSuccess, status, setLoading } = useStatus();
+  const loading = status === 'loading';
+
+  const form = useForm<FormSchema>({
+    resolver: valibotResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    const auth = await signIn.email({
-      email: data.email,
-      password: data.password,
-    });
-    if (auth.error) {
-      setLoading(false);
-      if (auth.error.code === "INVALID_EMAIL_OR_PASSWORD") {
-        form.setError("email", {
-          type: "manual",
-          message: "Invalid email or password",
-        });
-      } else {
-        toast.error(auth.error.message);
+  const onSubmit = async (data: FormSchema) => {
+    try {
+      setLoading();
+      const auth = await signIn.email({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (auth.error) {
+        if (auth.error.code === 'INVALID_EMAIL_OR_PASSWORD') {
+          setError();
+          form.setError('email', {
+            type: 'manual',
+            message: 'Invalid email or password',
+          });
+        } else {
+          toast.error(auth.error.message);
+        }
+        return;
       }
-      return;
+
+      const user = auth.data.user as User;
+      setSuccess(() =>
+        router.push(`/${user.activeOrganization}/${user.activeMode}`),
+      );
+    } catch (e) {
+      setError();
+      if (e instanceof Error) toast.error(e.message);
+      else toast.error('An unexpected error occurred.');
     }
-    const user = auth.data.user as User;
-    router.push(`/${user.activeOrganization}/${user.activeMode}`);
   };
 
   return (
@@ -108,7 +125,7 @@ export const SignInForm = () => {
             </FormItem>
           )}
         />
-        <Button isLoading={loading} type="submit" className="mt-2">
+        <Button status={status} type="submit" className="mt-2">
           Continue
         </Button>
       </form>

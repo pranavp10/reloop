@@ -1,10 +1,11 @@
-import { Button, Icon } from "@reloop/ui";
+import { Button } from '@reloop/ui/components/button';
+import { Icon } from '@reloop/ui/components/icon';
 import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from "@reloop/ui/components/tabs";
+} from '@reloop/ui/components/tabs';
 export const LeftSidebar = () => {
   return (
     <div className=" h-[calc(100dvh-48px)] max-w-xs w-full border-l border-dashed ">

@@ -1,5 +1,5 @@
-import fp from 'fastify-plugin';
 import { redis } from '@reloop/db/redis';
+import fp from 'fastify-plugin';
 
 export default fp(
   async function fastifyDb(fastify) {

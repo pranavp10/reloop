@@ -18,8 +18,10 @@
   "dependencies": {
     "@fastify/autoload": "catalog:",
     "@fastify/cors": "catalog:",
+    "@fastify/swagger": "~9.5.1",
     "@reloop/auth": "workspace:*",
     "@reloop/db": "workspace:*",
+    "@scalar/fastify-api-reference": "~1.28.34",
     "fastify": "catalog:",
     "fastify-plugin": "catalog:",
     "valibot": "catalog:"

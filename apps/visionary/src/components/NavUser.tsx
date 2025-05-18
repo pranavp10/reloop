@@ -1,13 +1,6 @@
-"use client";
+'use client';
 
-import {
-  BellIcon,
-  CreditCardIcon,
-  LogOutIcon,
-  UserCircleIcon,
-} from "lucide-react";
-
-import { BoringAvatar } from "@reloop/ui/components/avatar";
+import { BoringAvatar } from '@reloop/ui/components/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,9 +9,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@reloop/ui/components/dropdown-menu";
-import { SidebarMenu, SidebarMenuItem } from "@reloop/ui/components/sidebar";
-import { useSession } from "@/lib/auth/client";
+} from '@reloop/ui/components/dropdown-menu';
+import { SidebarMenu, SidebarMenuItem } from '@reloop/ui/components/sidebar';
+import { useSession } from '@/lib/auth/client';
+import { Icon } from '@reloop/ui/components/icon';
 
 export function NavUser({ size = 24 }: { size?: number }) {
   const { data } = useSession();
@@ -52,23 +46,9 @@ export function NavUser({ size = 24 }: { size?: number }) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <UserCircleIcon />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCardIcon />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <BellIcon />
-                Notifications
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOutIcon />
+              <Icon name="logout" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

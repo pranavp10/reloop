@@ -1,7 +1,7 @@
-import { Button } from "@reloop/ui";
-import { Input } from "@reloop/ui/components/input";
-import { Label } from "@reloop/ui/components/label";
-import { useQueryState } from "nuqs";
+import { Button } from '@reloop/ui/components/button';
+import { Input } from '@reloop/ui/components/input';
+import { Label } from '@reloop/ui/components/label';
+import { useQueryState } from 'nuqs';
 
 export const AddOrgName = ({
   onClose,
@@ -10,8 +10,8 @@ export const AddOrgName = ({
   onClose: () => void;
   onCreate: () => void;
 }) => {
-  const [organizationName, setorganizationName] = useQueryState("orgName", {
-    defaultValue: "",
+  const [organizationName, setorganizationName] = useQueryState('orgName', {
+    defaultValue: '',
   });
 
   return (

@@ -1,31 +1,30 @@
-"use client";
+'use client';
 
-import { Check, ChevronsUpDown, CirclePlus } from "lucide-react";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@reloop/ui/components/sidebar";
+} from '@reloop/ui/components/sidebar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@reloop/ui/components/dropdown-menu";
-import { BoringAvatar } from "@reloop/ui/components/avatar";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import { AddOrganization } from "./AddOrganization";
-import { useQueryState } from "nuqs";
-import { useSession } from "@/lib/auth/client";
+} from '@reloop/ui/components/dropdown-menu';
+import { BoringAvatar } from '@reloop/ui/components/avatar';
+import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { AddOrganization } from './AddOrganization';
+import { useQueryState } from 'nuqs';
+import { useSession } from '@/lib/auth/client';
 
 export function Organization() {
   const { data } = useSession();
   const router = useRouter();
   const params = useParams<{ organizationId: string }>();
-  const [organizationName] = useQueryState("orgName", {
-    defaultValue: "",
+  const [organizationName] = useQueryState('orgName', {
+    defaultValue: '',
   });
   const [addOrganization, setAddOrganization] =
     useState<boolean>(!!organizationName);
@@ -59,14 +58,14 @@ export function Organization() {
                 </div>
                 <div className="grid flex-1 text-left text-base leading-tight">
                   <span className="truncate font-medium">
-                    {data.user.name ?? "Select a Team"}
+                    {data.user.name ?? 'Select a Team'}
                   </span>
                 </div>
-                <ChevronsUpDown
+                {/* <ChevronsUpDown
                   className="ms-auto text-sidebar-foreground/50"
                   size={14}
                   aria-hidden="true"
-                />
+                /> */}
               </SidebarMenuButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent
@@ -95,7 +94,7 @@ export function Organization() {
                   )}
                   <div className="flex items-center justify-between w-full">
                     <p className="text-base">{org.name}</p>
-                    <Check className="w-5 h-5" />
+                    {/* <Check className="w-5 h-5" /> */}
                   </div>
                 </DropdownMenuItem>
               ))}
@@ -103,7 +102,7 @@ export function Organization() {
                 className="gap-2 p-2"
                 onClick={() => setAddOrganization(true)}
               >
-                <CirclePlus className="text-blue-500" />
+                {/* <CirclePlus className="text-blue-500" /> */}
                 <div className="">Add Organization</div>
               </DropdownMenuItem>
             </DropdownMenuContent>

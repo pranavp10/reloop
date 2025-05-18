@@ -1,6 +1,6 @@
 import { DatabaseInstance } from '@reloop/db/pg';
 import { RedisInstance } from '@reloop/db/redis';
-import { AuthInstance } from '@reloop/auth/server';
+import type { AuthInstance } from './plugins/auth';
 
 declare module 'fastify' {
   interface FastifyInstance {
