@@ -27,7 +27,7 @@ import {
   partialCheck,
   InferInput,
 } from 'valibot';
-import { useStatus } from '@/hooks/useStatus';
+import { useLoading } from '@/hooks/useLoading';
 
 const formSchema = pipe(
   object({
@@ -67,7 +67,7 @@ type SignupValues = InferInput<typeof formSchema>;
 
 export const SignupForm = () => {
   const router = useRouter();
-  const { setError, setSuccess, status, setLoading, setIdle } = useStatus();
+  const { setError, setSuccess, status, setLoading, setIdle } = useLoading();
   const loading = status === 'loading';
   const form = useForm<SignupValues>({
     resolver: valibotResolver(formSchema),

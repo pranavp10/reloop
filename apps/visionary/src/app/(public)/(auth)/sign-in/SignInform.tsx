@@ -18,7 +18,7 @@ import { signIn } from '@/lib/auth/client';
 import { User } from '@reloop/auth/client';
 import { object, string, minLength, pipe, email, InferInput } from 'valibot';
 import { Button } from '@reloop/ui/components/button';
-import { useStatus } from '@/hooks/useStatus';
+import { useLoading } from '@/hooks/useLoading';
 
 const formSchema = object({
   email: pipe(string(), email()),
@@ -29,7 +29,7 @@ type FormSchema = InferInput<typeof formSchema>;
 
 export const SignInForm = () => {
   const router = useRouter();
-  const { setError, setSuccess, status, setLoading } = useStatus();
+  const { setError, setSuccess, status, setLoading } = useLoading();
   const loading = status === 'loading';
 
   const form = useForm<FormSchema>({

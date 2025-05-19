@@ -6,7 +6,7 @@ interface UseStatusOptions {
   autoResetDelay?: number;
 }
 
-export function useStatus(
+export function useLoading(
   initialState: ButtonState = 'idle',
   options?: UseStatusOptions,
 ) {
