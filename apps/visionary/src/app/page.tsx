@@ -1,4 +1,4 @@
-"use client";
+'use client';
 export default function Page() {
-  return <div>Hello word</div>;
+  return <div>welcome to reloop</div>;
 }

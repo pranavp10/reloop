@@ -14,4 +14,5 @@ export const {
   useSession,
   organization,
   updateUser,
+  apiKey,
 } = authClient;

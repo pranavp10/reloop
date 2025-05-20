@@ -1,5 +1,5 @@
 const Page = () => {
-  return <div>Teams</div>;
+  return <div>Billinf</div>;
 };
 
 export default Page;
