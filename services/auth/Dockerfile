@@ -22,7 +22,7 @@ FROM builder-base AS builder
 COPY . .
 
 # https://turbo.build/reloop/docs/guides/tools/docker#the-solution
-RUN pnpm dlx turbo prune shield --docker
+RUN pnpm dlx turbo prune auth --docker
 
 # =========================================================================== #
 
@@ -39,13 +39,13 @@ RUN pnpm build
 FROM base AS production
 
 RUN addgroup --system --gid 1001 nodejs \
-    && adduser --system --uid 1001 shield
+    && adduser --system --uid 1001 auth
 
-COPY --from=installer --chown=shield:nodejs /app/services/shield/dist /app/dist
+COPY --from=installer --chown=auth:nodejs /app/services/auth/dist /app/dist
 
-USER shield
+USER auth
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
-  CMD wget --quiet --spider http://${HOST}:${PORT}/api/v1/shield/health || exit 1
+  CMD wget --quiet --spider http://${HOST}:${PORT}/api/v1/auth/health || exit 1
 
 CMD ["node", "/app/dist/index.js"]

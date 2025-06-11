@@ -28,7 +28,7 @@ export default async function server() {
   fastify.register(autoLoad, {
     dir: join(__dirname, 'routes'),
     options: {
-      prefix: '/api/shield',
+      prefix: '/api/auth',
     },
   });
 

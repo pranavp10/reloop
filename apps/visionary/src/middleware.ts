@@ -5,7 +5,7 @@ import { Session, User } from '@reloop/auth/client';
 export default async function authMiddleware(request: NextRequest) {
   try {
     const { data } = await api<{ session: Session; user: User }>(
-      '/api/shield/v1/get-session',
+      '/api/auth/v1/get-session',
       {
         baseURL: request.nextUrl.origin,
         headers: {

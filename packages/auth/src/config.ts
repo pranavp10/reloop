@@ -10,7 +10,7 @@ import {
 } from 'better-auth/plugins';
 
 export const config = {
-  basePath: '/api/shield/v1/',
+  basePath: '/api/auth/v1/',
   user: {
     additionalFields: {
       activeMode: {

@@ -14,7 +14,7 @@ export default fp(async (fastify) => {
   });
 
   fastify.register(scalar, {
-    routePrefix: '/api/shield/docs',
+    routePrefix: '/api/auth/docs',
     configuration: {
       theme: 'default',
     },

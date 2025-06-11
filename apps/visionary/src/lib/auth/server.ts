@@ -8,7 +8,7 @@ export const getCurrentUser = cache(async () => {
   const requestHeaders = await headers();
   const cookie = requestHeaders.get('cookie') || '';
   try {
-    const { data: session } = await api<Session>('/api/shield/v1/get-session', {
+    const { data: session } = await api<Session>('/api/auth/v1/get-session', {
       baseURL: requestHeaders.get('x-url-origin') || '',
       headers: { cookie },
     });

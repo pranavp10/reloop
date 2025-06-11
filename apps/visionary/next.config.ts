@@ -3,8 +3,8 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/shield/:path*',
-        destination: `${process.env.NEXT_PUBLIC_SHIELD_API_URL}/:path*`,
+        source: '/api/auth/:path*',
+        destination: `${process.env.NEXT_PUBLIC_AUTH_API_URL}/:path*`,
       },
     ];
   },
