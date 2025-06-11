@@ -66,6 +66,7 @@
     "@radix-ui/react-tooltip": "catalog:",
     "boring-avatars": "catalog:",
     "class-variance-authority": "catalog:",
+    "clsx": "catalog:",
     "cmdk": "catalog:",
     "date-fns": "catalog:",
     "embla-carousel-react": "catalog:",
@@ -79,6 +80,9 @@
     "recharts": "catalog:",
     "sonner": "catalog:",
     "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:",
+    "tailwindcss": "catalog:",
+    "tailwindcss-animate": "catalog:",
     "vaul": "catalog:"
   },
   "devDependencies": {

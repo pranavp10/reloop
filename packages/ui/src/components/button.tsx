@@ -2,10 +2,10 @@
 
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Check, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import * as React from 'react';
 import { cn } from '../lib/utils';
+import { Icon } from './icon';
 import Spinner from './spinner';
 
 const buttonVariants = cva(
@@ -75,13 +75,13 @@ function Button({
     ),
     success: successContent ?? (
       <span className="inline-flex items-center gap-1.5">
-        <Check className="size-4" />
+        <Icon name="check" className="w-4 h-4" />
         Success
       </span>
     ),
     error: errorContent ?? (
       <span className="inline-flex items-center gap-1.5">
-        <X className="size-4" />
+        <Icon name="cross-circle" className="w-4 h-4" />
         Oops!
       </span>
     ),
